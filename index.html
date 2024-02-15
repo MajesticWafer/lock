@@ -15,7 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      height: 100vh;
+      min-height: 100vh; /* Ensures the body covers the full height of the viewport */
       font-family: 'Hedvig Letters Sans', sans-serif;
     }
     .lock-container {
@@ -55,13 +55,19 @@
       height: 10px;
       border-radius: 50%;
       animation: confetti-fall 2s ease-out infinite;
+      transform: translateY(0); /* Reset initial position */
     }
     @keyframes confetti-fall {
       0% {
-        transform: translateY(0) rotateZ(0);
+        transform: translateY(-100vh); /* Start from above the viewport */
+        opacity: 0; /* Initial transparency */
+      }
+      50% {
+        opacity: 1; /* Fully visible at the apex */
       }
       100% {
-        transform: translateY(100vh) rotateZ(720deg);
+        transform: translateY(100vh); /* Fall back down below the viewport */
+        opacity: 0; /* Fade out completely */
       }
     }
     .confetti:nth-child(1) {
