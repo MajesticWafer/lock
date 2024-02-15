@@ -14,8 +14,8 @@
       background-color: #ebebeb;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      align-items: flex-end;
+      height: 100vh;
       font-family: 'Hedvig Letters Sans', sans-serif;
     }
     .lock-container {
@@ -23,6 +23,11 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: calc(2vh / 7);
     }
     .lock-input {
       margin-bottom: 20px;
@@ -30,6 +35,8 @@
       font-size: 18px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      width: 200px;
+      text-align: center;
     }
     .lock-button {
       padding: 10px 20px;
@@ -39,22 +46,43 @@
       background-color: #007bff;
       color: #fff;
       cursor: pointer;
+      width: 150px;
+      text-align: center;
     }
     .confetti {
       position: absolute;
       width: 10px;
       height: 10px;
-      background-color: #f00;
       border-radius: 50%;
-      animation: confetti-fall 5s linear infinite;
+      animation: confetti-fall 2s ease-out infinite;
     }
     @keyframes confetti-fall {
       0% {
         transform: translateY(0) rotateZ(0);
       }
       100% {
-        transform: translateY(-200vh) rotateZ(720deg);
+        transform: translateY(100vh) rotateZ(720deg);
       }
+    }
+    .confetti:nth-child(1) {
+      background-color: #ff6384;
+      animation-duration: 1s;
+    }
+    .confetti:nth-child(2) {
+      background-color: #36a2eb;
+      animation-duration: 1.2s;
+    }
+    .confetti:nth-child(3) {
+      background-color: #cc65fe;
+      animation-duration: 1.4s;
+    }
+    .confetti:nth-child(4) {
+      background-color: #ffce56;
+      animation-duration: 1.6s;
+    }
+    .confetti:nth-child(5) {
+      background-color: #4bc0c0;
+      animation-duration: 1.8s;
     }
   </style>
 </head>
@@ -72,7 +100,7 @@
           var confetti = document.createElement("div");
           confetti.className = "confetti";
           confetti.style.left = Math.random() * window.innerWidth + "px";
-          confetti.style.animationDelay = Math.random() * 5 + "s";
+          confetti.style.animationDelay = Math.random() * 2 + "s";
           document.body.appendChild(confetti);
         }
       } else {
