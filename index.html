@@ -54,7 +54,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      animation: confetti-fall 5s linear infinite;
+      animation: confetti-fall 3s ease-out infinite;
       transform: translateY(0); /* Reset initial position */
     }
     @keyframes confetti-fall {
@@ -73,23 +73,23 @@
     }
     .confetti:nth-child(1) {
       background-color: #ff6384;
-      animation-duration: 5s; /* Duration of the animation */
+      animation-duration: 2s;
     }
     .confetti:nth-child(2) {
       background-color: #36a2eb;
-      animation-duration: 6s;
+      animation-duration: 2.2s;
     }
     .confetti:nth-child(3) {
       background-color: #cc65fe;
-      animation-duration: 7s;
+      animation-duration: 2.4s;
     }
     .confetti:nth-child(4) {
       background-color: #ffce56;
-      animation-duration: 8s;
+      animation-duration: 2.6s;
     }
     .confetti:nth-child(5) {
       background-color: #4bc0c0;
-      animation-duration: 9s;
+      animation-duration: 2.8s;
     }
   </style>
 </head>
@@ -103,18 +103,13 @@
       var code = document.getElementById("codeInput").value;
       if (code === "0953") {
         // Correct code entered, trigger confetti effect
-        var confettiInterval = setInterval(function() {
+        for (var i = 0; i < 100; i++) {
           var confetti = document.createElement("div");
           confetti.className = "confetti";
           confetti.style.left = Math.random() * window.innerWidth + "px";
+          confetti.style.animationDelay = Math.random() * 2 + "s";
           document.body.appendChild(confetti);
-          setTimeout(function() {
-            confetti.remove();
-          }, 5000); // Remove confetti after 5 seconds
-        }, 50); // Generate 20 confetti pieces per second
-        setTimeout(function() {
-          clearInterval(confettiInterval);
-        }, 3000); // Stop generating confetti after 3 seconds
+        }
       } else {
         alert("Incorrect code. Try again.");
       }
