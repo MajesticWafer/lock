@@ -49,47 +49,53 @@
       width: 150px;
       text-align: center;
     }
+    .confetti-container {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
     .confetti {
       position: absolute;
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      animation: confetti-fall 3s ease-in-out infinite;
+      animation: confetti-fall 4s ease-in-out infinite;
       transform: translateY(0); /* Reset initial position */
     }
     @keyframes confetti-fall {
       0% {
-        transform: translateY(0); /* Start from bottom of the screen */
+        transform: translateY(0) rotate(0); /* Start from bottom of the screen */
         opacity: 0; /* Initial transparency */
       }
       50% {
-        transform: translateY(calc(-100vh + 33vh)); /* Reach apex at top 1/3 of screen */
+        transform: translateY(calc(-100vh + 33vh)) rotate(360deg); /* Reach apex at top 1/3 of screen */
         opacity: 1; /* Fully visible at the apex */
       }
       100% {
-        transform: translateY(100vh); /* Fall back down below the viewport */
+        transform: translateY(100vh) rotate(720deg); /* Fall back down below the viewport */
         opacity: 0; /* Fade out completely */
       }
     }
     .confetti:nth-child(1) {
       background-color: #ff6384;
-      animation-duration: 2s;
+      animation-duration: 1.5s; /* Faster rising */
     }
     .confetti:nth-child(2) {
       background-color: #36a2eb;
-      animation-duration: 2.2s;
+      animation-duration: 1.7s; /* Faster rising */
     }
     .confetti:nth-child(3) {
       background-color: #cc65fe;
-      animation-duration: 2.4s;
+      animation-duration: 1.9s; /* Faster rising */
     }
     .confetti:nth-child(4) {
       background-color: #ffce56;
-      animation-duration: 2.6s;
+      animation-duration: 3s; /* Slower falling */
     }
     .confetti:nth-child(5) {
       background-color: #4bc0c0;
-      animation-duration: 2.8s;
+      animation-duration: 3.2s; /* Slower falling */
     }
   </style>
 </head>
@@ -98,17 +104,21 @@
     <input type="password" class="lock-input" placeholder="Enter the code..." id="codeInput">
     <button class="lock-button" onclick="checkCode()">Unlock</button>
   </div>
+  <div class="confetti-container">
+    <!-- Add confetti here -->
+  </div>
   <script>
     function checkCode() {
       var code = document.getElementById("codeInput").value;
       if (code === "0953") {
         // Correct code entered, trigger confetti effect
-        for (var i = 0; i < 100; i++) {
+        var confettiContainer = document.querySelector('.confetti-container');
+        for (var i = 0; i < 250; i++) {
           var confetti = document.createElement("div");
           confetti.className = "confetti";
           confetti.style.left = Math.random() * window.innerWidth + "px";
           confetti.style.animationDelay = Math.random() * 2 + "s";
-          document.body.appendChild(confetti);
+          confettiContainer.appendChild(confetti);
         }
       } else {
         alert("Incorrect code. Try again.");
